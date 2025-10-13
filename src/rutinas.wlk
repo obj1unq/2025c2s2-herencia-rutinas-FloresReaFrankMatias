@@ -1,14 +1,19 @@
 import personas.*
 
 class Rutinas {
-    method caloriasQuemadas(tiempo) { return 100 * (tiempo - self.descanso(tiempo) ) * self.intensidad() }
+    method caloriasQuemadas(tiempo) { 
+        return 100 * (tiempo - self.descanso(tiempo) ) * self.intensidad() 
+    }
     method descanso(tiempo)
     method intensidad() 
 }
 
 class Running inherits Rutinas{
-    var property intensidad  
+    const intensidad  
     override method descanso(tiempo) {   return if(tiempo > 20) { 5 } else { 2 } }
+    override method intensidad() {
+      return intensidad
+    }
 }
 class Maraton inherits Running{
     override method caloriasQuemadas(tiempo){    return super(tiempo) * 2  }

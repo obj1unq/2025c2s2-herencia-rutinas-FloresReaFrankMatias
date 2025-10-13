@@ -1,4 +1,4 @@
-import gimnasia.*
+import rutinas.*
 class Persona {
     var property peso
     
@@ -8,17 +8,22 @@ class Persona {
     
     method tiempoQuePractica()
     method kilosPorCaloriasQuePierde()
-    method validarRutina(rutina) 
+    method validarRutina(rutina){
+        if(not self.puedePracticar(rutina)){
+            self.error("No puede realizar la rutina" + rutina)
+        }    
+    } 
+    method puedePracticar(rutina) 
+
 }
 
 class PersonaSedentaria inherits Persona {
     var property tiempo  
     override method kilosPorCaloriasQuePierde() {     return 7000     }
     override method tiempoQuePractica()         {     return tiempo   }
-    override method validarRutina(rutina){
-        if(self.peso() < 50){
-            self.error("No puede realizar la rutina" + rutina)
-        }
+    
+    override method puedePracticar(rutina){
+        return self.peso() > 50
     }
 }
 class PersonaAtleta inherits Persona {
@@ -30,9 +35,8 @@ class PersonaAtleta inherits Persona {
         self.validarRutina(rutina)
         super(rutina) 
     }
-     override method validarRutina(rutina){
-        if( rutina.caloriasQuemadas( self.tiempoQuePractica()) < 10000    ){
-            self.error("No puede realizar la rutina" + rutina)
-        }
-    }
+
+    override method puedePracticar(rutina){
+        return self.caloriasQueGastaCon(rutina) > 10000
+}
 }
