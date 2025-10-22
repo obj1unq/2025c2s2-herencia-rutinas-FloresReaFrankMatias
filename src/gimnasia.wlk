@@ -1,3 +1,5 @@
+
+
 class Rutinas {
 
     method caloriasQuemadas(tiempo) {
@@ -6,7 +8,9 @@ class Rutinas {
 
     method descanso(tiempo)
     method intensidad() 
-
+    method caloriasBajadasPor(persona) {
+      return self.caloriasQuemadas( persona.tiempoQuePractica() ) 
+    }
 }
 
 class Running inherits Rutinas{

@@ -18,6 +18,7 @@ class Persona {
     method validarRutina(rutina) {
       
     }
+   
 
 }
 
